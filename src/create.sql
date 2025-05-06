@@ -21,15 +21,7 @@ create table if not exists education
     education_level text not null,
     study_field     text not null,
     start_date      date not null check ( start_date < CURRENT_DATE ),
-    end_date        date not null check ( end_date <= CURRENT_DATE )
-);
-
-create table if not exists post
-(
-    id         uuid primary key default gen_random_uuid(),
-    title      text           not null,
-    salary     numeric(10, 2) not null check ( salary > 0 ),
-    company_id uuid references company (id) on delete cascade
+    end_date        date not null
 );
 
 create table if not exists company
@@ -44,11 +36,20 @@ create table if not exists company
     ogrn              varchar(13)  unique not null check ( ogrn ~ '^[0-9]{13}$' ),
     address           text         not null
 );
+
+create table if not exists post
+(
+    id         uuid primary key default gen_random_uuid(),
+    title      text           not null,
+    salary     numeric(10, 2) not null check ( salary > 0 ),
+    company_id uuid references company (id) on delete cascade
+);
+
 -- TODO добавить каскадное обновление при удалении
 create table if not exists position
 (
     id        uuid primary key default gen_random_uuid(),
-    parent_id uuid references position (id) on delete set default (select p.parent_id from position as p where p.id = position_id),
+    parent_id uuid references position (id),
     title     text not null
 );
 

@@ -27,3 +27,5 @@ valgrind_log.txt
 /report/ИУ7-64Б-Бугаков-Иван-БД-РПЗ.pdf
 /report/Бугаков-РПЗ.pdf
 /report/
+src/shit.sql
+.idea/
