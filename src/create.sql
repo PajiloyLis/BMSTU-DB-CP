@@ -21,16 +21,16 @@ create type education_level as enum (
     'Среднее профессиональное (ПССЗ)',
     'Программы переподготовки',
     'Курсы повышения квалификации'
-);
+    );
 
 create table if not exists education
 (
     id              uuid primary key default gen_random_uuid(),
     employee_id     uuid references employee_base (id) on delete cascade,
-    institution     text not null,
+    institution     text            not null,
     education_level education_level not null,
-    study_field     text not null,
-    start_date      date not null check ( start_date < CURRENT_DATE ),
+    study_field     text            not null,
+    start_date      date            not null check ( start_date < CURRENT_DATE ),
     end_date        date
 );
 
@@ -50,7 +50,7 @@ create table if not exists company
 create table if not exists post
 (
     id         uuid primary key default gen_random_uuid(),
-    title      text           not null,
+    title      text not null,
     salary     numeric(10, 2) not null check ( salary > 0 ),
     company_id uuid references company (id) on delete cascade
 );
