@@ -8,8 +8,8 @@ truncate table education;
 
 truncate table employee_base;
 
-truncate table post;
+truncate table post cascade ;
 
 truncate table company;
 
-truncate table position;
+truncate table position cascade ;

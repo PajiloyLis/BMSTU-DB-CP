@@ -12,6 +12,8 @@ drop table if exists employee_base;
 
 drop table if exists post;
 
+drop table if exists position;
+
 drop table if exists company;
 
-drop table if exists position;
+drop type if exists education_level;
