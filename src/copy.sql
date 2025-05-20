@@ -73,3 +73,31 @@ from post
 where id not in (select post_id from post_history);
 
 select post_id from post_history where post_id not in (select id from post);
+
+copy position_history (position_id, employee_id, start_date, end_date) from '/tmp/position_history.csv' delimiter ',' csv header NULL 'null';
+
+select distinct id
+from employee_base
+where id not in (select employee_id from position_history);
+
+select distinct id
+from position
+where id not in (select position_id from position_history);
+
+select distinct company.title
+from company
+         join position on company.id = position.company_id
+where position.id in (select position_id from position_history);
+
+copy score_story (employee_id, author_id, position_id, created_at, efficiency_score, engagement_score, competency_score) from '/tmp/scores.csv' delimiter ',' csv header NULL 'null';
+
+select distinct id
+from employee_base
+where id not in (select employee_id from score_story) and id not in (select employee_id from position_history where position_id in (select id from position where parent_id is null));
+
+select distinct id from position where id not in (select distinct position_id from score_story) and parent_id is not null;
+
+select count(distinct employee_id) from score_story;
+select count(distinct employee_id) from score_story where employee_id in (select employee_id from position_history where position_id in (select position_id from position where parent_id is null));
+
+select distinct full_name from employee_base join position_history on employee_base.id = position_history.employee_id join position on position.id = position_history.position_id where position.parent_id is null;
