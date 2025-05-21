@@ -71,8 +71,8 @@ returns trigger
 language plpgsql
 as $$
 begin
-    if old.parent_id is distinct from new.parent_id and (select count(*) from position where parent_id = old.employee_id) > 0 then
-        raise exception 'Parent id cannot be changed directly for employees with subordinates, use the special function';
+    if old.parent_id is distinct from new.parent_id and (select count(*) from position where parent_id = old.position_id) > 0 then
+        raise exception 'Parent id cannot be changed directly for employees with subordinates, use the special functions: change_parent_id_with_subordinates(uuid, uuid), change_parent_id_without_subordinates(uuuid, uuid)';
     end if;
     return new;
 end;

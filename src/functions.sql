@@ -30,6 +30,8 @@ begin
 END;
 $$ LANGUAGE plpgsql;
 
+
+
 create or replace function get_subordinates_by_position(start_position text)
     returns table
             (
@@ -62,6 +64,37 @@ begin
 END;
 $$ LANGUAGE plpgsql;
 
+drop function if exists get_subordinates_by_employee_name(employee_name text);
+
+create or replace function get_subordinates_by_employee_name(employee_name text)
+    returns table
+            (full_name text)
+AS
+$$
+declare
+    manager_position_id uuid;
+begin
+    -- Получаем текущую позицию сотрудника
+    select position_id into manager_position_id
+    from employee_base
+    join position_history on employee_base.id = position_history.employee_id
+    where employee_base.full_name = employee_name
+    and position_history.end_date is null;  -- Текущая позиция
+
+    if manager_position_id is null then
+        raise exception 'Employee with name % not found or has no current position', employee_name;
+    end if;
+
+    -- Возвращаем информацию о подчиненных
+    return query
+    select employee_base.full_name from employee_base join position_history on employee_base.id = position_history.employee_id
+    where position_history.position_id in (
+        select res.id
+        from get_subordinates_by_id(manager_position_id) as res
+    ) and end_date is null;
+end;
+$$ LANGUAGE plpgsql;
+
 create or replace function change_parent_id_with_subordinates(position_to_update_id uuid, new_parent_id uuid)
     returns void
     language plpgsql
@@ -92,12 +125,3 @@ begin
     end if;
 end;
 $$;
-
-select *
-from position;
-
-select *
-from get_subordinates_by_id('ac372e9b-2292-4354-bd4d-5c7470b54850');
-
-select *
-from get_subordinates_by_position('Финансовый директор');
