@@ -9,6 +9,8 @@ create table if not exists employee_base
     duties     jsonb            default null
 );
 
+alter table employee_base enable row level security ;
+
 create temporary view employee as
 select *, extract(year from age(employee_base.birth_date)) as age
 from employee_base;
@@ -34,6 +36,8 @@ create table if not exists education
     end_date        date
 );
 
+alter table education enable row level security ;
+
 create table if not exists company
 (
     id                uuid primary key default gen_random_uuid(),
@@ -55,7 +59,6 @@ create table if not exists post
     company_id uuid references company (id) on delete cascade
 );
 
--- TODO добавить каскадное обновление при удалении
 create table if not exists position
 (
     id         uuid primary key default gen_random_uuid(),
@@ -72,6 +75,8 @@ create table if not exists post_history
     end_date    date check ( end_date <= CURRENT_DATE )
 );
 
+alter table post_history enable row level security ;
+
 create table if not exists position_history
 (
     position_id uuid references position (id) on delete set null,
@@ -79,6 +84,8 @@ create table if not exists position_history
     start_date  date not null check ( start_date < CURRENT_DATE ),
     end_date    date check ( end_date <= current_date )
 );
+
+alter table position_history enable row level security ;
 
 create table if not exists score_story
 (
@@ -90,3 +97,5 @@ create table if not exists score_story
     engagement_score int check ( engagement_score > 0 and engagement_score < 6 ),
     competency_score int check ( competency_score > 0 and competency_score < 6 )
 );
+
+alter table score_story enable row level security ;

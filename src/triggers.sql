@@ -83,4 +83,20 @@ before update on position
 for each row
 execute function protect_column_parent_id();
 
+create or replace function check_scores_frequency()
+returns trigger
+language plpgsql
+as $$
+begin
+    if new.created_at - (select max(score_story.created_at) from score_story where employee_id=new.employee_id and position_id = new.position_id) < interval '1 month' then
+        raise exception 'Scores frequency must be at least 1 month';
+    end if;
+    return new;
+end;
+$$;
+
+create trigger check_scores_frequency_trigger
+before insert or update on score_story
+for each row
+execute function check_scores_frequency();
 

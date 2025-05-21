@@ -64,11 +64,11 @@ begin
 END;
 $$ LANGUAGE plpgsql;
 
-drop function if exists get_subordinates_by_employee_name(employee_name text);
+drop function if exists get_current_subordinates_id_by_employee_id(head_employee_id uuid);
 
-create or replace function get_subordinates_by_employee_name(employee_name text)
+create or replace function get_current_subordinates_id_by_employee_id(head_employee_id uuid)
     returns table
-            (full_name text)
+            (id uuid)
 AS
 $$
 declare
@@ -78,7 +78,7 @@ begin
     select position_id into manager_position_id
     from employee_base
     join position_history on employee_base.id = position_history.employee_id
-    where employee_base.full_name = employee_name
+    where employee_base.id = head_employee_id
     and position_history.end_date is null;  -- Текущая позиция
 
     if manager_position_id is null then
@@ -87,7 +87,7 @@ begin
 
     -- Возвращаем информацию о подчиненных
     return query
-    select employee_base.full_name from employee_base join position_history on employee_base.id = position_history.employee_id
+    select employee_base.id from employee_base join position_history on employee_base.id = position_history.employee_id
     where position_history.position_id in (
         select res.id
         from get_subordinates_by_id(manager_position_id) as res
