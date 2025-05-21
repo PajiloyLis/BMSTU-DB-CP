@@ -65,3 +65,22 @@ before delete on position_history
 for each row
 execute function reassignment_positions();
 
+
+create or replace function protect_column_parent_id()
+returns trigger
+language plpgsql
+as $$
+begin
+    if old.parent_id is distinct from new.parent_id and (select count(*) from position where parent_id = old.employee_id) > 0 then
+        raise exception 'Parent id cannot be changed directly for employees with subordinates, use the special function';
+    end if;
+    return new;
+end;
+$$;
+
+create trigger protect_column_parent_id_trigger
+before update on position
+for each row
+execute function protect_column_parent_id();
+
+
