@@ -89,6 +89,7 @@ alter table position_history enable row level security ;
 
 create table if not exists score_story
 (
+    id				 uuid primary key default gen_random_uuid(),
     employee_id      uuid references employee_base (id) on delete cascade,
     author_id        uuid        references employee_base (id) on delete set null,
     position_id      uuid        references position (id) on delete set null,
