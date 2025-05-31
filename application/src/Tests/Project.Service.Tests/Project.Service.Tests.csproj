@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.5">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="9.0.5" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.0" />
+        <PackageReference Include="Moq" Version="4.20.72"/>
+        <PackageReference Include="StackExchange.Redis" Version="2.8.37" />
+        <PackageReference Include="xunit" Version="2.9.3"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\Project.Core\Project.Core.csproj"/>
+        <ProjectReference Include="..\..\Database\Database.Repositories\Database.Repositories.csproj"/>
+        <ProjectReference Include="..\..\Services\Project.Services.EducationService\Project.Services.EducationService.csproj"/>
+        <ProjectReference Include="..\..\Services\Project.Services.EmployeeService\Project.Services.EmployeeService.csproj"/>
+        <ProjectReference Include="..\..\Services\Project.Services.EmployeeService\Project.Services.EmployeeService.csproj"/>
+        <ProjectReference Include="..\..\Services\Project.Services.CompanyService\Project.Services.CompanyService.csproj"/>
+        <ProjectReference Include="..\..\Services\Project.Services.PositionHistoryService\Project.Services.PositionHistoryService.csproj"/>
+        <ProjectReference Include="..\..\Services\Project.Services.PositionService\Project.Services.PositionService.csproj"/>
+        <ProjectReference Include="..\..\Services\Project.Services.PostHistoryService\Project.Services.PostHistoryService.csproj"/>
+        <ProjectReference Include="..\..\Services\Project.Services.PostService\Project.Services.PostService.csproj"/>
+        <ProjectReference Include="..\..\Services\Project.Services.ScoreService\Project.Services.ScoreService.csproj"/>
+    </ItemGroup>
+
+</Project>

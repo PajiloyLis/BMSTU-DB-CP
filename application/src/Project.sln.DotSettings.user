@@ -1,0 +1,69 @@
+﻿<wpf:ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xml:space="preserve">
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AIAsyncLifetime_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003F_002Econfig_003FJetBrains_003FRider2025_002E1_003Fresharper_002Dhost_003FSourcesCache_003Ff37a879c75bf3f9b17985180c72d23a4cd0501ac79ae98ed8e74f9a5d823_003FIAsyncLifetime_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AIt_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003F_002Econfig_003FJetBrains_003FRider2025_002E1_003Fresharper_002Dhost_003FSourcesCache_003Fa5dce8b1d2a7d9ef9711874f6976cc2328aeee8898eaf2a10335496cc47bf_003FIt_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003ATestInvoker_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003F_002Econfig_003FJetBrains_003FRider2025_002E1_003Fresharper_002Dhost_003FSourcesCache_003F5e14a4e27990972fa4ae94975603bd298aaf328ee083c03b10569ee4724d57_003FTestInvoker_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
+	
+	<s:String x:Key="/Default/Environment/Hierarchy/Build/BuildTool/CustomBuildToolPath/@EntryValue">/home/ivan/.dotnet/sdk/9.0.300/MSBuild.dll</s:String>
+	<s:String x:Key="/Default/Environment/Hierarchy/Build/BuildTool/DotNetCliExePath/@EntryValue">/home/ivan/.dotnet/dotnet</s:String>
+	
+	<s:Boolean x:Key="/Default/Environment/Hierarchy/Build/BuildTool/RecentDotNetCliExePaths/=_002Fusr_002Fshare_002Fdotnet_002Fsdk_002F9_002E0_002E203_002Fdotnet_002Edll/@EntryIndexedValue">True</s:Boolean>
+    <s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=11fb6334_002Dd8fa_002D4459_002D9843_002Dc8274ea9e0ee/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="PostServiceTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::91529BD8-18E6-48FB-BBAC-793334355C01::net9.0::Project.Service.Tests.PostServiceTests&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::91529BD8-18E6-48FB-BBAC-793334355C01::net9.0::Project.Service.Tests.EmployeeServiceTests&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::91529BD8-18E6-48FB-BBAC-793334355C01::net9.0::Project.Service.Tests.EducationServiceTests&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::91529BD8-18E6-48FB-BBAC-793334355C01::net9.0::Project.Service.Tests.CompanyServiceTests&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::91529BD8-18E6-48FB-BBAC-793334355C01::net9.0::Project.Service.Tests.ScoreServiceTests&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::91529BD8-18E6-48FB-BBAC-793334355C01::net9.0::Project.Service.Tests.PostHistoryServiceTests&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::91529BD8-18E6-48FB-BBAC-793334355C01::net9.0::Project.Service.Tests.PositionHistoryServiceTests&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::91529BD8-18E6-48FB-BBAC-793334355C01::net9.0::Project.Service.Tests.PositionServiceTests&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::3971F637-EB50-4170-A65E-4B2081267F99::net9.0::Project.Repository.Tests.EmployeeRepositoryTests&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=34fdfd45_002Dbca4_002D48e6_002Dba52_002De39a78667232/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="EducationRepositoryTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::3971F637-EB50-4170-A65E-4B2081267F99::net9.0::Project.Repository.Tests.EducationRepositoryTests&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::3971F637-EB50-4170-A65E-4B2081267F99::net9.0::Project.Repository.Tests.EmployeeRepositoryTests&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=37a10800_002Da6e5_002D4cf5_002Da35c_002De0ba2ebbd1b8/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GetScoreByIdAsync_ShouldReturnScore_WhenExists" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::3971F637-EB50-4170-A65E-4B2081267F99::net9.0::Project.Repository.Tests.ScoreRepositoryTests.GetScoreByIdAsync_ShouldReturnScore_WhenExists&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::EBB52F54-1C52-48EB-8A78-B37799AE914A::net9.0::Project.Tests.Controllers.CompanyControllerTests&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::3971F637-EB50-4170-A65E-4B2081267F99::net9.0::Project.Repository.Tests.CompanyRepositoryTests&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::EBB52F54-1C52-48EB-8A78-B37799AE914A::net9.0::Project.Tests.Controllers.EmployeeControllerTests&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::EBB52F54-1C52-48EB-8A78-B37799AE914A::net9.0::Project.Tests.Controllers.EducationControllerTests&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::EBB52F54-1C52-48EB-8A78-B37799AE914A::net9.0::Project.Tests.Controllers.PositionControllerTests&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::EBB52F54-1C52-48EB-8A78-B37799AE914A::net9.0::Project.Tests.Controllers.PositionHistoryControllerTests&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=498f2c01_002Dff12_002D4157_002D8b56_002Dd275b487133b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="EducationRepositoryTests #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::3971F637-EB50-4170-A65E-4B2081267F99::net9.0::Project.Repository.Tests.EducationRepositoryTests&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::3971F637-EB50-4170-A65E-4B2081267F99::net9.0::Project.Repository.Tests.EmployeeRepositoryTests&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::3971F637-EB50-4170-A65E-4B2081267F99::net9.0::Project.Repository.Tests.CompanyRepositoryTests&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=a10316af_002D11b8_002D4412_002Db7b7_002Ddc630c88f406/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="PositionServiceTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::91529BD8-18E6-48FB-BBAC-793334355C01::net9.0::Project.Service.Tests.PositionServiceTests&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::91529BD8-18E6-48FB-BBAC-793334355C01::net9.0::Project.Service.Tests.ScoreServiceTests&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::3971F637-EB50-4170-A65E-4B2081267F99::net9.0::Project.Repository.Tests.EmployeeRepositoryTests&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::3971F637-EB50-4170-A65E-4B2081267F99::net9.0::Project.Repository.Tests.CompanyRepositoryTests&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::3971F637-EB50-4170-A65E-4B2081267F99::net9.0::Project.Repository.Tests.EducationRepositoryTests&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::3971F637-EB50-4170-A65E-4B2081267F99::net9.0::Project.Repository.Tests.PositionRepositoryTests&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::3971F637-EB50-4170-A65E-4B2081267F99::net9.0::Project.Repository.Tests.PostRepositoryTests&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::3971F637-EB50-4170-A65E-4B2081267F99::net9.0::Project.Repository.Tests.ScoreRepositoryTests&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::3971F637-EB50-4170-A65E-4B2081267F99::net9.0::Project.Repository.Tests.PositionHistoryRepositoryTests&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::3971F637-EB50-4170-A65E-4B2081267F99::net9.0::Project.Repository.Tests.PostHistoryRepositoryTests&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::EBB52F54-1C52-48EB-8A78-B37799AE914A::net9.0::Project.Tests.Controllers.CompanyControllerTests&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	
+	
+	
+	
+	
+	
+	
+	</wpf:ResourceDictionary>

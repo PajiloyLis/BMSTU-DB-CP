@@ -33,7 +33,7 @@ grant insert, update on score_story to employee_user;
 create policy employee_reading_policy on employee_base
     for select
     to employee_user
-    using (id in (select * from get_current_subordinates_id_by_employee_id(current_user_id())));
+    using (id in (select employee_id from get_current_subordinates_id_by_employee_id(current_user_id())));
 
 create policy employee_reading_policy on position_history
     for select
