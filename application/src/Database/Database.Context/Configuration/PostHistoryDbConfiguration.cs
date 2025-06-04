@@ -38,13 +38,13 @@ public class PostHistoryDbConfiguration : IEntityTypeConfiguration<PostHistoryDb
             "end_date <= CURRENT_DATE");
 
         builder.HasOne<PostDb>()
-            .WithMany()
+            .WithMany(p => p.PostHistories)
             .HasForeignKey(ph => ph.PostId)
             .HasPrincipalKey(p => p.Id)
             .OnDelete(DeleteBehavior.SetNull);
 
         builder.HasOne<EmployeeDb>()
-            .WithMany()
+            .WithMany(e => e.PostHistories)
             .HasForeignKey(ph => ph.EmployeeId)
             .HasPrincipalKey(e => e.Id)
             .OnDelete(DeleteBehavior.Cascade);

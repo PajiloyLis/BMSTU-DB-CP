@@ -50,7 +50,7 @@ public class PostDb
     /// <summary>
     /// Company id.
     /// </summary>
-    [ForeignKey(nameof(CompanyDb))]
+    [Column("company_id")][ForeignKey(nameof(CompanyDb))]
     public Guid CompanyId { get; set; }
 
     public ICollection<PostHistoryDb> PostHistories { get; set; }

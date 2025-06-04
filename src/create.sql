@@ -12,6 +12,12 @@ create table if not exists employee_base
 alter table employee_base
     enable row level security;
 
+create table if not exists employee_reduced
+    (
+        id         uuid references employee_base (id) on delete cascade,
+        email      varchar(255) unique not null check ( email ~ '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$' )
+);
+
 create temporary view employee as
 select *, extract(year from age(employee_base.birth_date)) as age
 from employee_base;
@@ -70,6 +76,12 @@ create table if not exists position
     _is_deleted bool not null    default false
 );
 
+create table if not exists position_reduced
+(
+  id uuid primary key,
+  parent_id uuid references position_reduced(id)
+);
+
 create table if not exists post_history
 (
     post_id     uuid references post (id),
@@ -92,6 +104,11 @@ create table if not exists position_history
 alter table position_history
     enable row level security;
 
+create table if not exists position_history_reduced(
+    position_id uuid,
+    employee_id uuid references employee_base(id) on delete cascade
+);
+
 create table if not exists score_story
 (
     id               uuid primary key     default gen_random_uuid(),
@@ -106,3 +123,16 @@ create table if not exists score_story
 
 alter table score_story
     enable row level security;
+
+drop table if exists users;
+
+create table if not exists users(
+    email varchar(255) primary key check( email ~ '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$' ),
+    password text not null unique,
+    salt text not null,
+    role text not null
+);
+
+select * from users;
+
+select * from employee_base;

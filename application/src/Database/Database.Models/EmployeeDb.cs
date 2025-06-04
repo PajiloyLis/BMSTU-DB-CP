@@ -75,7 +75,6 @@ public class EmployeeDb
     /// <summary>
     /// Employee duties json formated
     /// </summary>
-    [Required]
     public string? Duties { get; set; }
 
     public ICollection<EducationDb> Educations { get; set; } = new List<EducationDb>();

@@ -14,9 +14,9 @@ public class PositionHistoryDb
         EndDate = endDate;
     }
 
-    [ForeignKey(nameof(PositionDb))]
+    [Column("position_id")][ForeignKey(nameof(PositionDb))]
     public Guid PositionId { get; set; }
-    [ForeignKey(nameof(EmployeeDb))]
+    [Column("employee_id")][ForeignKey(nameof(EmployeeDb))]
     public Guid EmployeeId { get; set; }
     [Required]
     public DateOnly StartDate { get; set; }

@@ -8,7 +8,10 @@ public interface IPositionRepository
 {
     Task<BasePosition> AddPositionAsync(CreatePosition position);
     Task<BasePosition> GetPositionByIdAsync(Guid id);
-    Task<BasePosition> UpdatePositionAsync(UpdatePosition position);
+    Task<BasePosition> GetHeadPositionByCompanyIdAsync(Guid id);
+    Task<BasePosition> UpdatePositionTitleAsync(UpdatePosition position);
+    Task<BasePosition> UpdatePositionParentWithSubordinatesAsync(UpdatePosition position);
+    Task<BasePosition> UpdatePositionParentWithoutSuboridnatesAsync(UpdatePosition position);
     Task DeletePositionAsync(Guid id);
     Task<PositionHierarchyPage> GetSubordinatesAsync(Guid parentId, int pageNumber, int pageSize);
 }

@@ -1,4 +1,5 @@
 using Database.Context;
+using Database.Models;
 using Database.Models.Converters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -213,24 +214,25 @@ public class PostHistoryRepository : IPostHistoryRepository
                 "Getting subordinates post history for manager {ManagerId} from {StartDate} to {EndDate}, page {PageNumber}, size {PageSize}",
                 managerId, startDate, endDate, pageNumber, pageSize);
 
-            var employees = await _context.GetCurrentSubordinatesIdByEmployeeId(managerId).Select(ph => ph.EmployeeId)
-                .ToListAsync();
+            var employees = await _context.GetCurrentSubordinatesIdByEmployeeId(managerId).Select(ph => ph.EmployeeId).ToListAsync();
             
             var query = _context.PostHistoryDb.Where(ph => employees.Contains(ph.EmployeeId));
             
             if (startDate.HasValue)
-                query = query.Where(ph => ph.EndDate == null || ph.EndDate >= startDate);
+                query = _context.PostHistoryDb.Where(ph => ph.EndDate == null || ph.EndDate >= startDate);
             if (endDate.HasValue)
-                query = query.Where(ph =>
+                query = _context.PostHistoryDb.Where(ph =>
                     (ph.EndDate == null && endDate == DateOnly.FromDateTime(DateTime.Today)) || ph.EndDate <= endDate);
-            
-            var totalItems = await query.CountAsync();
-            var items = await query
-                .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize)
-                .Select(ph => PostHistoryConverter.Convert(ph)!)
-                .ToListAsync();
 
+            var totalItems = await query.CountAsync();
+            query = query
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize);
+            
+            _logger.LogWarning(query.ToQueryString());
+            
+            var items = await query.Select(ph => PostHistoryConverter.Convert(ph)!).ToListAsync();
+            
             _logger.LogInformation(
                 "Successfully retrieved {Count} subordinates post history records for manager {ManagerId}",
                 items.Count, managerId);

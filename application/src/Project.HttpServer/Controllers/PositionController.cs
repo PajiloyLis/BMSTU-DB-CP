@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Project.Core.Exceptions;
 using Project.Core.Models.Position;
@@ -83,17 +84,17 @@ public class PositionController : ControllerBase
         }
     }
 
-    [HttpPut]
-    [SwaggerOperation("updatePosition")]
+    [HttpPut("updatePositionTitle")]
+    [SwaggerOperation("updatePositionTitle")]
     [SwaggerResponse(StatusCodes.Status200OK, type: typeof(PositionDto))]
     [SwaggerResponse(StatusCodes.Status401Unauthorized, type: typeof(ErrorDto))]
     [SwaggerResponse(StatusCodes.Status400BadRequest, type: typeof(ErrorDto))]
     [SwaggerResponse(StatusCodes.Status500InternalServerError, type: typeof(ErrorDto))]
-    public async Task<IActionResult> UpdatePosition([FromBody] [Required] UpdatePositionDto updatePosition)
+    public async Task<IActionResult> UpdatePositionTitle([FromBody] [Required] UpdatePositionDto updatePosition)
     {
         try
         {
-            var updatedPosition = await _positionService.UpdatePositionAsync(updatePosition.Id,
+            var updatedPosition = await _positionService.UpdatePositionTitleAsync(updatePosition.Id,
                 updatePosition.CompanyId,
                 updatePosition.ParentId,
                 updatePosition.Title);
@@ -161,6 +162,112 @@ public class PositionController : ControllerBase
             var positions = await _positionService.GetSubordinatesAsync(positionId, pageNumber, pageSize);
 
             return Ok(positions.Items.Select(PositionHierarchyConverter.Convert));
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, e.Message);
+            return StatusCode(StatusCodes.Status500InternalServerError, new ErrorDto(e.GetType().Name, e.Message));
+        }
+    }
+    
+    [Authorize(Roles = "admin")]
+    [HttpPut("updatePositionParentWithSubordinates")]
+    [SwaggerOperation("updatePositionParentWithSubordinates")]
+    [SwaggerResponse(StatusCodes.Status200OK, type: typeof(PositionDto))]
+    [SwaggerResponse(StatusCodes.Status401Unauthorized, type: typeof(ErrorDto))]
+    [SwaggerResponse(StatusCodes.Status400BadRequest, type: typeof(ErrorDto))]
+    [SwaggerResponse(StatusCodes.Status500InternalServerError, type: typeof(ErrorDto))]
+    public async Task<IActionResult> UpdatePositionParentWithSubordinates([FromBody] [Required] UpdatePositionDto updatePosition)
+    {
+        try
+        {
+            var updatedPosition = await _positionService.UpdatePositionParentWithSubordinatesAsync(updatePosition.Id,
+                updatePosition.CompanyId,
+                updatePosition.ParentId,
+                updatePosition.Title);
+
+            return Ok(PositionConverter.Convert(updatedPosition));
+        }
+        catch (PositionNotFoundException e)
+        {
+            _logger.LogWarning(e, e.Message);
+            return StatusCode(StatusCodes.Status404NotFound, new ErrorDto(e.GetType().Name, e.Message));
+        }
+        catch (PositionAlreadyExistsException e)
+        {
+            _logger.LogWarning(e, e.Message);
+            return StatusCode(StatusCodes.Status400BadRequest, new ErrorDto(e.GetType().Name, e.Message));
+        }
+        catch (ArgumentException e)
+        {
+            _logger.LogWarning(e, e.Message);
+            return StatusCode(StatusCodes.Status400BadRequest, new ErrorDto(e.GetType().Name, e.Message));
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, e.Message);
+            return StatusCode(StatusCodes.Status500InternalServerError, new ErrorDto(e.GetType().Name, e.Message));
+        }
+    }
+    
+    [Authorize(Roles = "admin")]
+    [HttpPut("updatePositionParentWithoutSubordinates")]
+    [SwaggerOperation("updatePositionParentWithoutSubordinates")]
+    [SwaggerResponse(StatusCodes.Status200OK, type: typeof(PositionDto))]
+    [SwaggerResponse(StatusCodes.Status401Unauthorized, type: typeof(ErrorDto))]
+    [SwaggerResponse(StatusCodes.Status400BadRequest, type: typeof(ErrorDto))]
+    [SwaggerResponse(StatusCodes.Status500InternalServerError, type: typeof(ErrorDto))]
+    public async Task<IActionResult> UpdatePositionParentWithoutSubordinates([FromBody] [Required] UpdatePositionDto updatePosition)
+    {
+        try
+        {
+            var updatedPosition = await _positionService.UpdatePositionParentWithoutSuboridnatesAsync(updatePosition.Id,
+                updatePosition.CompanyId,
+                updatePosition.ParentId,
+                updatePosition.Title);
+
+            return Ok(PositionConverter.Convert(updatedPosition));
+        }
+        catch (PositionNotFoundException e)
+        {
+            _logger.LogWarning(e, e.Message);
+            return StatusCode(StatusCodes.Status404NotFound, new ErrorDto(e.GetType().Name, e.Message));
+        }
+        catch (PositionAlreadyExistsException e)
+        {
+            _logger.LogWarning(e, e.Message);
+            return StatusCode(StatusCodes.Status400BadRequest, new ErrorDto(e.GetType().Name, e.Message));
+        }
+        catch (ArgumentException e)
+        {
+            _logger.LogWarning(e, e.Message);
+            return StatusCode(StatusCodes.Status400BadRequest, new ErrorDto(e.GetType().Name, e.Message));
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, e.Message);
+            return StatusCode(StatusCodes.Status500InternalServerError, new ErrorDto(e.GetType().Name, e.Message));
+        }
+    }
+    
+    [HttpGet("companyHeadPosition/{companyId:guid}")]
+    [SwaggerOperation("getCompanyHeadPositionById")]
+    [SwaggerResponse(StatusCodes.Status200OK, type: typeof(PositionDto))]
+    [SwaggerResponse(StatusCodes.Status401Unauthorized, type: typeof(ErrorDto))]
+    [SwaggerResponse(StatusCodes.Status404NotFound, type: typeof(ErrorDto))]
+    [SwaggerResponse(StatusCodes.Status500InternalServerError, type: typeof(ErrorDto))]
+    public async Task<IActionResult> GetCompanyHeadPosition([FromRoute] [Required] Guid companyId)
+    {
+        try
+        {
+            var position = await _positionService.GetHeadPositionByCompanyIdAsync(companyId);
+
+            return Ok(PositionConverter.Convert(position));
+        }
+        catch (PositionNotFoundException e)
+        {
+            _logger.LogWarning(e, e.Message);
+            return StatusCode(StatusCodes.Status404NotFound, new ErrorDto(e.GetType().Name, e.Message));
         }
         catch (Exception e)
         {

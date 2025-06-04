@@ -4,6 +4,10 @@ copy employee_base (id, full_name, phone, email, birth_date, photo, duties) from
 select *
 from employee_base;
 
+insert into employee_reduced(id, email) (select id, email from employee_base);
+
+select * from employee_reduced;
+
 -- COPY employee_base TO '/tmp/employee_with_id.csv' WITH CSV HEADER DELIMITER ',' ENCODING 'UTF-8';
 
 select *
@@ -51,6 +55,12 @@ copy position (id, title, parent_id, company_id) from '/tmp/position.csv' delimi
 select *
 from position;
 
+truncate position_reduced;
+
+insert into public.position_reduced (select id, parent_id from position);
+
+select * from position_reduced;
+
 copy post_history (post_id, employee_id, start_date, end_date) from '/tmp/post_history.csv' delimiter ',' csv header NULL 'null';
 
 select *
@@ -76,6 +86,12 @@ select post_id from post_history where post_id not in (select id from post);
 
 copy position_history (position_id, employee_id, start_date, end_date) from '/tmp/position_history.csv' delimiter ',' csv header NULL 'null';
 
+truncate position_history_reduced;
+
+insert into position_history_reduced(position_id, employee_id)  (select position_id, employee_id from position_history where end_date is null);
+
+select * from position_history_reduced;
+
 select distinct id
 from employee_base
 where id not in (select employee_id from position_history);
@@ -96,6 +112,8 @@ from employee_base
 where id not in (select employee_id from score_story) and id not in (select employee_id from position_history where position_id in (select id from position where parent_id is null));
 
 select distinct id from position where id not in (select distinct position_id from score_story) and parent_id is not null;
+
+select count (*) from score_story;
 
 select count(distinct employee_id) from score_story;
 select count(distinct employee_id) from score_story where employee_id in (select employee_id from position_history where position_id in (select position_id from position where parent_id is null));

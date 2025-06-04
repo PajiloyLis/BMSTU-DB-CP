@@ -104,7 +104,7 @@ public class EducationService : IEducationService
                     .Select(k => (RedisKey)k.ToString())
                     .ToArray();
 
-                var allValid = educationKeys.Length == pageSize;
+                    var allValid = educationKeys.Length == pageSize;
 
                 foreach (var key in educationKeys)
                 {

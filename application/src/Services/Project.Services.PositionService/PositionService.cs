@@ -72,13 +72,73 @@ public class PositionService : IPositionService
         }
     }
 
-    public async Task<BasePosition> UpdatePositionAsync(Guid id, Guid companyId, Guid? parentId = null,
+    public async Task<BasePosition> GetHeadPositionByCompanyIdAsync(Guid id)
+    {
+        try
+        {
+            var result = await _repository.GetHeadPositionByCompanyIdAsync(id);
+            return result;
+        }
+        catch (Exception e)
+        {
+            _logger.LogWarning($"Error getting head position for company with id {id}");
+            throw;
+        }
+    }
+
+    public async Task<BasePosition> UpdatePositionTitleAsync(Guid id, Guid companyId, Guid? parentId = null,
         string? title = null)
     {
         try
         {
             var model = new UpdatePosition(id, companyId, parentId, title);
-            var result = await _repository.UpdatePositionAsync(model);
+            var result = await _repository.UpdatePositionTitleAsync(model);
+            await _cache.StringSetAsync($"position_{result.Id}", JsonSerializer.Serialize(result),
+                TimeSpan.FromMinutes(5));
+            _logger.LogInformation("Position updated: {Id}", id);
+            return result;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error updating position {Id}", id);
+            throw;
+        }
+    }
+
+    public async Task<BasePosition> UpdatePositionParentWithSubordinatesAsync(Guid id, Guid companyId, Guid? parentId = null, string? title = null)
+    {
+        try
+        {
+            if (parentId is null)
+            {
+                _logger.LogWarning("Parent id must be not null");
+                throw new ArgumentNullException(nameof(parentId), "Parent id must be not null");
+            }
+            var model = new UpdatePosition(id, companyId, parentId, title);
+            var result = await _repository.UpdatePositionParentWithSubordinatesAsync(model);
+            await _cache.StringSetAsync($"position_{result.Id}", JsonSerializer.Serialize(result),
+                TimeSpan.FromMinutes(5));
+            _logger.LogInformation("Position updated: {Id}", id);
+            return result;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error updating position {Id}", id);
+            throw;
+        }
+    }
+
+    public async Task<BasePosition> UpdatePositionParentWithoutSuboridnatesAsync(Guid id, Guid companyId, Guid? parentId = null, string? title = null)
+    {
+        try
+        {
+            if (parentId is null)
+            {
+                _logger.LogWarning("Parent id must be not null");
+                throw new ArgumentNullException(nameof(parentId), "Parent id must be not null");
+            }
+            var model = new UpdatePosition(id, companyId, parentId, title);
+            var result = await _repository.UpdatePositionParentWithoutSuboridnatesAsync(model);
             await _cache.StringSetAsync($"position_{result.Id}", JsonSerializer.Serialize(result),
                 TimeSpan.FromMinutes(5));
             _logger.LogInformation("Position updated: {Id}", id);

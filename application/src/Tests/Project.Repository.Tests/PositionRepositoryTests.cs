@@ -189,7 +189,7 @@ public class PositionRepositoryTests : IAsyncLifetime
             "Senior Developer");
 
         // Act
-        var result = await _repository.UpdatePositionAsync(update);
+        var result = await _repository.UpdatePositionTitleAsync(update);
 
         // Assert
         Assert.Equal("Senior Developer", result.Title);

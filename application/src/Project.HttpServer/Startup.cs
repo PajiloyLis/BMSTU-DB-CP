@@ -16,6 +16,7 @@ public class Startup
         services.AddProjectControllers()
             .AddProjectSwaggerGen()
             .AddProjectDbRepositories()
+            .AddHttpContextAccessor()
             .AddProjectRedisCache(Configuration)
             .AddProjectAuthorization(Configuration)
             .AddProjectCors(Configuration.GetValue("AllowedHeaders", "AllowAllHeaders"))

@@ -36,7 +36,7 @@ public class PostHistoryController : ControllerBase
     {
         try
         {
-            var postHistory = await _postHistoryService.GetPostHistoryAsync(employeeId, postId);
+            var postHistory = await _postHistoryService.GetPostHistoryAsync(postId, employeeId);
 
             return Ok(PostHistoryConverter.Convert(postHistory));
         }

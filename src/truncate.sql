@@ -6,10 +6,10 @@ truncate table score_story;
 
 truncate table education;
 
-truncate table employee_base;
+truncate table employee_base cascade ;
 
 truncate table post cascade ;
 
-truncate table company;
+truncate table company cascade ;
 
 truncate table position cascade ;

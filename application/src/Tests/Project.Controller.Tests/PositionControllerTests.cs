@@ -205,7 +205,7 @@ namespace Project.Tests.Controllers
                 request.Title!,
                 request.CompanyId);
 
-            _mockService.Setup(x => x.UpdatePositionAsync(
+            _mockService.Setup(x => x.UpdatePositionTitleAsync(
                 request.Id,
                 request.CompanyId,
                 request.ParentId,
@@ -236,7 +236,7 @@ namespace Project.Tests.Controllers
                 "Old Title",
                 request.CompanyId);
 
-            _mockService.Setup(x => x.UpdatePositionAsync(
+            _mockService.Setup(x => x.UpdatePositionTitleAsync(
                 request.Id,
                 request.CompanyId,
                 request.ParentId,
@@ -266,7 +266,7 @@ namespace Project.Tests.Controllers
                 Guid.NewGuid(),
                 title: "New Title");
 
-            _mockService.Setup(x => x.UpdatePositionAsync(
+            _mockService.Setup(x => x.UpdatePositionTitleAsync(
                 request.Id,
                 request.CompanyId,
                 request.ParentId,
@@ -407,7 +407,7 @@ namespace Project.Tests.Controllers
                 Guid.NewGuid(),
                 parentId: Guid.NewGuid());
 
-            _mockService.Setup(x => x.UpdatePositionAsync(
+            _mockService.Setup(x => x.UpdatePositionTitleAsync(
                 request.Id,
                 request.CompanyId,
                 request.ParentId,

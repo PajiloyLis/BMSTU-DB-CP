@@ -29,11 +29,11 @@ public class PositionDb
 
     [Key] public Guid Id { get; set; }
 
-    [ForeignKey(nameof(PositionDb))] public Guid? ParentId { get; set; }
+    [Column("position_id")][ForeignKey(nameof(PositionDb))] public Guid? ParentId { get; set; }
 
     [Required] public string Title { get; set; } = null!;
 
-    [ForeignKey(nameof(CompanyDb))] public Guid CompanyId { get; set; }
+    [Column("company_id")][ForeignKey(nameof(CompanyDb))] public Guid CompanyId { get; set; }
 
     // Навигационные свойства
     public ICollection<PositionDb> Children { get; set; } = new List<PositionDb>();

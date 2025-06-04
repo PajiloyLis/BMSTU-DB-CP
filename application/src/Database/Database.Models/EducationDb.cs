@@ -41,7 +41,7 @@ public class EducationDb
 
     [Key] public Guid Id { get; set; }
 
-    [ForeignKey(nameof(EmployeeDb))] public Guid EmployeeId { get; set; }
+    [Column("employee_id")][ForeignKey(nameof(EmployeeDb))] public Guid EmployeeId { get; set; }
 
     [Required] public string Institution { get; set; }
 

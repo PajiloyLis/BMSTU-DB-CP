@@ -8,9 +8,13 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="JWT" Version="11.0.0" />
         <PackageReference Include="Microsoft.AspNetCore.Authentication.Abstractions" Version="2.3.0"/>
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.5" />
         <PackageReference Include="Microsoft.AspNetCore.Cryptography.KeyDerivation" Version="9.0.5" />
         <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.0"/>
+        <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.3.1" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.5" />
         <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.5" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.5">
             <PrivateAssets>all</PrivateAssets>
@@ -43,6 +47,7 @@
         <ProjectReference Include="..\Dto\Project.Dto.Http\Project.Dto.Http.csproj"/>
         <ProjectReference Include="..\Dto\Project.Dto.Http.Converters\Project.Dto.Http.Converters.csproj"/>
         <ProjectReference Include="..\Project.Core\Project.Core.csproj"/>
+        <ProjectReference Include="..\Services\Project.Service.AuthorizationService\Project.Service.AuthorizationService.csproj" />
         <ProjectReference Include="..\Services\Project.Services.CompanyService\Project.Services.CompanyService.csproj" />
         <ProjectReference Include="..\Services\Project.Services.EducationService\Project.Services.EducationService.csproj" />
         <ProjectReference Include="..\Services\Project.Services.EmployeeService\Project.Services.EmployeeService.csproj" />

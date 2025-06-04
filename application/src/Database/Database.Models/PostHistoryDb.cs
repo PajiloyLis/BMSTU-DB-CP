@@ -20,8 +20,11 @@ public class PostHistoryDb
         StartDate = startDate;
         EndDate = endDate;
     }
+    [Column("post_id")]
     [ForeignKey(nameof(PostDb))]
     public Guid PostId { get; set; }
+    
+    [Column("employee_id")]
     [ForeignKey(nameof(EmployeeDb))]
     public Guid EmployeeId { get; set; }
     [Required]

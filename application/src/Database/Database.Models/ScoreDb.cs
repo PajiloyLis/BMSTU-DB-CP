@@ -46,19 +46,19 @@ public class ScoreDb
     /// <summary>
     /// Employee id.
     /// </summary>
-    [ForeignKey(nameof(EmployeeDb))]
+    [Column("employee_id")][ForeignKey(nameof(EmployeeDb))]
     public Guid EmployeeId { get; set; }
 
     /// <summary>
     /// Author id.
     /// </summary>
-    [ForeignKey(nameof(EmployeeDb))]
+    [Column("author_id")][ForeignKey(nameof(EmployeeDb))]
     public Guid AuthorId { get; set; }
 
     /// <summary>
     /// Position id.
     /// </summary>
-    [ForeignKey(nameof(PositionDb))]
+    [Column("position_id")][ForeignKey(nameof(PositionDb))]
     public Guid PositionId { get; set; }
 
     /// <summary>
