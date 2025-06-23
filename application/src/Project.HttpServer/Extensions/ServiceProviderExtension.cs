@@ -112,8 +112,8 @@ public static class ServiceProviderExtension
             
             if (user?.Identity?.IsAuthenticated != true)
             {
-                dbUsername = "guest";
-                dbPassword = "guest_password";
+                dbUsername = "guest_user";
+                dbPassword = "guest_pass";
             }                
             else if (user.IsInRole("admin"))
             {

@@ -18,11 +18,8 @@ public class RlsInterceptor : DbConnectionInterceptor
         CancellationToken cancellationToken = default)
     {
         await base.ConnectionOpenedAsync(connection, eventData, cancellationToken);
-        
         await using var cmd = connection.CreateCommand();
         cmd.CommandText = $"SET app.current_user_name = '{_userId}';";
         await cmd.ExecuteNonQueryAsync(cancellationToken);
-        // cmd.CommandText = "SELECT set_config('app.current_user_id', current_user_id()::text, false);";
-        // await cmd.ExecuteNonQueryAsync(cancellationToken);
     }
 }

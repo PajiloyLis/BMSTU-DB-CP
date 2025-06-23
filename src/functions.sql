@@ -178,13 +178,15 @@ create or replace function change_parent_id_with_subordinates(position_to_update
 as
 $$
 begin
-
+    set session_replication_role = replica;
     if ((select count(*) from position where id = new_parent_id) = 0) then
+        set session_replication_role  = origin;
         raise exception 'New parent id is not an employee';
     else
         update position set parent_id = new_parent_id where id = position_to_update_id;
         update position_reduced set parent_id = new_parent_id where id = position_to_update_id;
     end if;
+    set session_replication_role = origin;
 end;
 $$;
 
@@ -195,7 +197,9 @@ create or replace function change_parent_id_without_subordinates(position_to_upd
 as
 $$
 begin
+    set session_replication_role = replica;
     if ((select count(*) from position where id = new_parent_id) = 0) then
+        set session_replication_role = origin;
         raise exception 'New parent id is not an employee';
     else
         update position
@@ -208,6 +212,7 @@ begin
         where parent_id = position_to_update_id;
         update position_reduced set parent_id = new_parent_id where id = position_to_update_id;
     end if;
+    set session_replication_role = origin;
 end;
 $$;
 

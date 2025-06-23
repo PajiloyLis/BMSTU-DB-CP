@@ -105,7 +105,7 @@ alter table position_history
     enable row level security;
 
 create table if not exists position_history_reduced(
-    position_id uuid,
+    position_id uuid references position (id),
     employee_id uuid references employee_base(id) on delete cascade
 );
 

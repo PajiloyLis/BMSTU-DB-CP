@@ -36,17 +36,16 @@ grant admin_user to admin;
 drop role guest_user;
 create role guest_user with
     login
-    bypassrls ;
+    password 'guest_pass';
 grant select on company, post, position, public.users to guest_user;
 grant insert on public.users to guest_user;
 grant execute on function get_subordinates_by_id to guest_user;
-grant execute on function get_subordinates_by_position to guest_user;
 
 -- revoke all on all functions in schema public FROM guest_user;
 -- revoke all on all tables in schema public from guest_user;
 
 -- drop user guest;
-create user guest with password 'guest_password';
+create user guest with password 'guest_pass';
 grant guest_user to guest;
 
 
@@ -58,6 +57,7 @@ drop role employee_user;
 create role employee_user with
     login password 'employee_pass';
 grant select on all tables in schema public to employee_user;
+revoke select on employee_reduced, position_reduced, position_history_reduced from employee_user;
 grant insert, update on score_story to employee_user;
 grant execute on function get_subordinates_by_position to employee_user;
 grant execute on function get_subordinates_by_id to employee_user;

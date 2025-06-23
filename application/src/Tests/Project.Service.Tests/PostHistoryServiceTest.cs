@@ -5,6 +5,7 @@ using Project.Core.Models;
 using Project.Core.Models.PostHistory;
 using Project.Core.Repositories;
 using Project.Services.PostHistoryService;
+using StackExchange.Redis;
 using Xunit;
 
 namespace Project.Service.Tests;
@@ -14,12 +15,14 @@ public class PostHistoryServiceTests
     private readonly Mock<ILogger<PostHistoryService>> _mockLogger;
     private readonly Mock<IPostHistoryRepository> _mockRepository;
     private readonly PostHistoryService _postHistoryService;
+    private readonly Mock<IConnectionMultiplexer> _mockCache;
 
     public PostHistoryServiceTests()
     {
         _mockRepository = new Mock<IPostHistoryRepository>();
         _mockLogger = new Mock<ILogger<PostHistoryService>>();
-        _postHistoryService = new PostHistoryService(_mockRepository.Object, _mockLogger.Object);
+        _mockCache = new Mock<IConnectionMultiplexer>();
+        _postHistoryService = new PostHistoryService(_mockRepository.Object, _mockLogger.Object, _mockCache.Object);
     }
 
     [Fact]

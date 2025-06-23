@@ -6,6 +6,7 @@ using Project.Core.Models.Position;
 using Project.Core.Models.PositionHistory;
 using Project.Core.Repositories;
 using Project.Services.PositionService;
+using StackExchange.Redis;
 using Xunit;
 
 namespace Project.Service.Tests;
@@ -15,12 +16,14 @@ public class PositionServiceTests
     private readonly Mock<ILogger<PositionService>> _mockLogger;
     private readonly Mock<IPositionRepository> _mockRepository;
     private readonly PositionService _positionService;
+    private readonly Mock<IConnectionMultiplexer> _mockCache;
 
     public PositionServiceTests()
     {
         _mockRepository = new Mock<IPositionRepository>();
         _mockLogger = new Mock<ILogger<PositionService>>();
-        _positionService = new PositionService(_mockRepository.Object, _mockLogger.Object);
+        _mockCache = new Mock<IConnectionMultiplexer>();
+        _positionService = new PositionService(_mockRepository.Object, _mockLogger.Object, _mockCache.Object);
     }
 
     [Fact]

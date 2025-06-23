@@ -68,6 +68,10 @@ public class ProjectDbContext : DbContext
 
         modelBuilder.HasDbFunction(() => GetCurrentSubordinatesIdByEmployeeId(Guid.Empty));
 
+        modelBuilder.HasDbFunction(typeof(ProjectDbContext).GetMethod(nameof(GetSubordinatesById))!);
+
+        modelBuilder.HasDbFunction(() => GetSubordinatesById(Guid.Empty));
+
         modelBuilder.ApplyConfiguration(new EmployeeDbConfiguration());
         modelBuilder.ApplyConfiguration(new CompanyDbConfiguration());
         modelBuilder.ApplyConfiguration(new EducationDbConfiguration());

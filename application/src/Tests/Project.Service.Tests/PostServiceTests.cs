@@ -5,6 +5,7 @@ using Project.Core.Models;
 using Project.Core.Models.Post;
 using Project.Core.Repositories;
 using Project.Services.PostService;
+using StackExchange.Redis;
 using Xunit;
 
 namespace Project.Service.Tests;
@@ -14,12 +15,13 @@ public class PostServiceTests
     private readonly Mock<ILogger<PostService>> _mockLogger;
     private readonly Mock<IPostRepository> _mockRepository;
     private readonly PostService _postService;
-
+    private readonly Mock<IConnectionMultiplexer> _mockCache;
     public PostServiceTests()
     {
         _mockRepository = new Mock<IPostRepository>();
         _mockLogger = new Mock<ILogger<PostService>>();
-        _postService = new PostService(_mockRepository.Object, _mockLogger.Object);
+        _mockCache = new Mock<IConnectionMultiplexer>();
+        _postService = new PostService(_mockRepository.Object, _mockLogger.Object, _mockCache.Object);
     }
 
     [Fact]

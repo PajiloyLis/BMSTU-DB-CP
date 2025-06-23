@@ -48,14 +48,14 @@
     &lt;TestId&gt;xUnit::EBB52F54-1C52-48EB-8A78-B37799AE914A::net9.0::Project.Tests.Controllers.PositionHistoryControllerTests&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=498f2c01_002Dff12_002D4157_002D8b56_002Dd275b487133b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="EducationRepositoryTests #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=498f2c01_002Dff12_002D4157_002D8b56_002Dd275b487133b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="EducationRepositoryTests #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;xUnit::3971F637-EB50-4170-A65E-4B2081267F99::net9.0::Project.Repository.Tests.EducationRepositoryTests&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::3971F637-EB50-4170-A65E-4B2081267F99::net9.0::Project.Repository.Tests.EmployeeRepositoryTests&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::3971F637-EB50-4170-A65E-4B2081267F99::net9.0::Project.Repository.Tests.CompanyRepositoryTests&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=a10316af_002D11b8_002D4412_002Db7b7_002Ddc630c88f406/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="PositionServiceTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=a10316af_002D11b8_002D4412_002Db7b7_002Ddc630c88f406/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="PositionServiceTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;xUnit::91529BD8-18E6-48FB-BBAC-793334355C01::net9.0::Project.Service.Tests.PositionServiceTests&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::91529BD8-18E6-48FB-BBAC-793334355C01::net9.0::Project.Service.Tests.ScoreServiceTests&lt;/TestId&gt;
@@ -68,6 +68,7 @@
     &lt;TestId&gt;xUnit::3971F637-EB50-4170-A65E-4B2081267F99::net9.0::Project.Repository.Tests.PositionHistoryRepositoryTests&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::3971F637-EB50-4170-A65E-4B2081267F99::net9.0::Project.Repository.Tests.PostHistoryRepositoryTests&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::EBB52F54-1C52-48EB-8A78-B37799AE914A::net9.0::Project.Tests.Controllers.CompanyControllerTests&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::91529BD8-18E6-48FB-BBAC-793334355C01::net9.0::Project.Service.Tests.CompanyServiceTests&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	

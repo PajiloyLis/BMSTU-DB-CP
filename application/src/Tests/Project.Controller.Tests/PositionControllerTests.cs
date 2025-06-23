@@ -213,7 +213,7 @@ namespace Project.Tests.Controllers
                 .ReturnsAsync(expectedPosition);
 
             // Act
-            var result = await _controller.UpdatePosition(request);
+            var result = await _controller.UpdatePositionTitle(request);
 
             // Assert
             var okResult = Assert.IsType<OkObjectResult>(result);
@@ -248,7 +248,7 @@ namespace Project.Tests.Controllers
                     request.CompanyId));
 
             // Act
-            var result = await _controller.UpdatePosition(request);
+            var result = await _controller.UpdatePositionTitle(request);
 
             // Assert
             var okResult = Assert.IsType<OkObjectResult>(result);
@@ -274,7 +274,7 @@ namespace Project.Tests.Controllers
                 .ThrowsAsync(new PositionNotFoundException("Not found"));
 
             // Act
-            var result = await _controller.UpdatePosition(request);
+            var result = await _controller.UpdatePositionTitle(request);
 
             // Assert
             var notFoundResult = Assert.IsType<ObjectResult>(result);
@@ -415,7 +415,7 @@ namespace Project.Tests.Controllers
                 .ThrowsAsync(new ArgumentException("Circular reference detected"));
 
             // Act
-            var result = await _controller.UpdatePosition(request);
+            var result = await _controller.UpdatePositionTitle(request);
 
             // Assert
             var badRequestResult = Assert.IsType<ObjectResult>(result);

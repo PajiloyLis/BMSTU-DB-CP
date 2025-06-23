@@ -5,6 +5,7 @@ using Project.Core.Models;
 using Project.Core.Models.Education;
 using Project.Core.Repositories;
 using Project.Services.EducationService;
+using StackExchange.Redis;
 using Xunit;
 
 namespace Project.Service.Tests;
@@ -14,12 +15,14 @@ public class EducationServiceTests
     private readonly EducationService _educationService;
     private readonly Mock<ILogger<EducationService>> _mockLogger;
     private readonly Mock<IEducationRepository> _mockRepository;
+    private readonly Mock<IConnectionMultiplexer> _mockCache;
 
     public EducationServiceTests()
     {
         _mockRepository = new Mock<IEducationRepository>();
         _mockLogger = new Mock<ILogger<EducationService>>();
-        _educationService = new EducationService(_mockRepository.Object, _mockLogger.Object);
+        _mockCache = new Mock<IConnectionMultiplexer>();
+        _educationService = new EducationService(_mockRepository.Object, _mockLogger.Object, _mockCache.Object);
     }
 
     [Fact]

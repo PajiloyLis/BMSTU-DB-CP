@@ -5,6 +5,7 @@ using Project.Core.Models;
 using Project.Core.Models.Employee;
 using Project.Core.Repositories;
 using Project.Services.EmployeeService;
+using StackExchange.Redis;
 using Xunit;
 
 namespace Project.Service.Tests;
@@ -14,12 +15,14 @@ public class EmployeeServiceTests
     private readonly EmployeeService _employeeService;
     private readonly Mock<ILogger<EmployeeService>> _mockLogger;
     private readonly Mock<IEmployeeRepository> _mockRepo;
+    private readonly Mock<IConnectionMultiplexer> _mockCache;
 
     public EmployeeServiceTests()
     {
         _mockRepo = new Mock<IEmployeeRepository>();
         _mockLogger = new Mock<ILogger<EmployeeService>>();
-        _employeeService = new EmployeeService(_mockRepo.Object, _mockLogger.Object);
+        _mockCache = new Mock<IConnectionMultiplexer>();
+        _employeeService = new EmployeeService(_mockRepo.Object, _mockLogger.Object, _mockCache.Object);
     }
 
     [Fact]

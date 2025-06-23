@@ -113,7 +113,7 @@ public class UserRepository : IUserRepository
         }
     }
 
-    public async Task<Guid> GetCurrentUserIdAsync(string email)
+        public async Task<Guid> GetCurrentUserIdAsync(string email)
     {
         try
         {

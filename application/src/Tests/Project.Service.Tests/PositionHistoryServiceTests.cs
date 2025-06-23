@@ -4,6 +4,7 @@ using Project.Core.Exceptions;
 using Project.Core.Models.PositionHistory;
 using Project.Core.Repositories;
 using Project.Services.PositionHistoryService;
+using StackExchange.Redis;
 using Xunit;
 
 namespace Project.Service.Tests;
@@ -13,26 +14,28 @@ public class PositionHistoryServiceTests
     private readonly Mock<ILogger<PositionHistoryService>> _loggerMock;
     private readonly Mock<IPositionHistoryRepository> _repositoryMock;
     private readonly PositionHistoryService _service;
+    private readonly Mock<IConnectionMultiplexer> _mockCache;
 
     public PositionHistoryServiceTests()
     {
         _repositoryMock = new Mock<IPositionHistoryRepository>();
         _loggerMock = new Mock<ILogger<PositionHistoryService>>();
-        _service = new PositionHistoryService(_repositoryMock.Object, _loggerMock.Object);
+        _mockCache = new Mock<IConnectionMultiplexer>();
+        _service = new PositionHistoryService(_repositoryMock.Object, _loggerMock.Object, _mockCache.Object);
     }
 
     [Fact]
     public void Constructor_WithNullRepository_ThrowsArgumentNullException()
     {
         // Arrange & Act & Assert
-        Assert.Throws<ArgumentNullException>(() => new PositionHistoryService(null!, _loggerMock.Object));
+        Assert.Throws<ArgumentNullException>(() => new PositionHistoryService(null!, _loggerMock.Object, _mockCache.Object));
     }
 
     [Fact]
     public void Constructor_WithNullLogger_ThrowsArgumentNullException()
     {
         // Arrange & Act & Assert
-        Assert.Throws<ArgumentNullException>(() => new PositionHistoryService(_repositoryMock.Object, null!));
+        Assert.Throws<ArgumentNullException>(() => new PositionHistoryService(_repositoryMock.Object, null!, _mockCache.Object));
     }
 
     [Fact]
