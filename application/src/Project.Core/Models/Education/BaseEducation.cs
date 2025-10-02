@@ -2,6 +2,9 @@ namespace Project.Core.Models.Education;
 
 public class BaseEducation
 {
+    
+    public BaseEducation() { }
+    
     public BaseEducation(Guid id, Guid employeeId, string institution, string level, string studyField,
         DateOnly startDate, DateOnly? endDate)
     {

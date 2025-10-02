@@ -131,12 +131,12 @@ public class EducationRepository : IEducationRepository
     {
         try
         {
-            var query = _context.EducationDb.Where(e => e.EmployeeId == employeeId).OrderBy(db => db.StartDate);
+            var query = _context.EducationDb.Where(e => e.EmployeeId == employeeId).OrderBy(db => db.StartDate).AsNoTracking();
             var totalCount = await query.CountAsync();
 
             var educations = await query
-                .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize)
+                // .Skip((pageNumber - 1) * pageSize)
+                // .Take(pageSize)
                 .Select(e => EducationConverter.Convert(e))
                 .ToListAsync();
 

@@ -2,23 +2,11 @@ drop function if exists  current_user_id();
 
 SET app.current_user_name = 'komarov@example.com';
 
--- RESET app.current_user_name;
-
 CREATE or replace FUNCTION current_user_id() RETURNS uuid security definer AS $$
 BEGIN
     RETURN (SELECT id FROM employee_base WHERE email = current_setting('app.current_user_name')::text);
 END;
 $$ LANGUAGE plpgsql;
-
--- SELECT set_config('app.current_user_id', current_user_id()::text, false);
-
--- select current_setting('app.current_user_id');
-
-select * from current_user_id();
-
--- SELECT current_setting('app.current_user_name');
-
--- select * from employee_base;
 
 
 create role admin_user with
@@ -41,10 +29,6 @@ grant select on company, post, position, public.users to guest_user;
 grant insert on public.users to guest_user;
 grant execute on function get_subordinates_by_id to guest_user;
 
--- revoke all on all functions in schema public FROM guest_user;
--- revoke all on all tables in schema public from guest_user;
-
--- drop user guest;
 create user guest with password 'guest_pass';
 grant guest_user to guest;
 
@@ -95,27 +79,6 @@ create policy employee_reading_policy on employee_base
     to employee_user
     using (id in(select * from get_current_subordinates_id_by_employee_id_rls((SELECT current_setting('app.current_user_name')))));
 
-drop user employee;
 create user employee with password 'employee_pass';
 grant employee_user to employee;
 
-SELECT
-    grantee,
-    table_catalog AS database,
-    table_schema AS schema,
-    table_name AS object,
-    string_agg(privilege_type, ', ') AS privileges
-FROM
-    information_schema.table_privileges
-GROUP BY
-    grantee, table_catalog, table_schema, table_name
-ORDER BY
-    grantee, table_schema, table_name;
-
-SELECT proname, proacl
-FROM pg_proc
-WHERE pronamespace = 'public'::regnamespace;
-
-select current_user;
-
-select * from employee_base;

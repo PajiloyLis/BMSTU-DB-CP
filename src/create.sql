@@ -18,10 +18,6 @@ create table if not exists employee_reduced
         email      varchar(255) unique not null check ( email ~ '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$' )
 );
 
-create temporary view employee as
-select *, extract(year from age(employee_base.birth_date)) as age
-from employee_base;
-
 create table if not exists education
 (
     id              uuid primary key default gen_random_uuid(),
@@ -86,7 +82,7 @@ create table if not exists post_history
 (
     post_id     uuid references post (id),
     employee_id uuid references employee_base (id) on delete cascade,
-    start_date  date not null check ( start_date < CURRENT_DATE ),
+    start_date  date not null check ( start_date <= CURRENT_DATE ),
     end_date    date check ( end_date <= CURRENT_DATE )
 );
 
@@ -133,6 +129,3 @@ create table if not exists users(
     role text not null
 );
 
-select * from users;
-
-select * from employee_base;

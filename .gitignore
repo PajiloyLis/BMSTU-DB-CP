@@ -24,9 +24,7 @@ valgrind_log.txt
 /report/*.gz
 /report/*.toc
 /Методические_указания_по_выполнению_курсового_проекта_Дисциплина.pdf
-/report/ИУ7-64Б-Бугаков-Иван-БД-РПЗ.pdf
 /report/Бугаков-РПЗ.pdf
-/report/
 src/shit.sql
 .idea/
 /application/src/Database/Database.Context/bin/
@@ -65,3 +63,6 @@ src/shit.sql
 /application/src/Tests/Project.Repository.Tests/obj/
 /application/src/Tests/Project.Service.Tests/bin/
 /application/src/Tests/Project.Service.Tests/obj/
+*.pdb
+*.cache.cs
+

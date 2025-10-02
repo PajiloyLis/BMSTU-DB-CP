@@ -166,10 +166,6 @@ begin
 end;
 $$ LANGUAGE plpgsql;
 
--- select * from get_current_subordinates_id_by_employee_id('bad8a5a0-ec08-412e-8f19-0d9e993d5651');
-
-select *
-from get_current_subordinates_id_by_employee_id_rls('komarov@example.com');
 
 create or replace function change_parent_id_with_subordinates(position_to_update_id uuid, new_parent_id uuid)
     returns void
@@ -216,8 +212,3 @@ begin
 end;
 $$;
 
-select change_parent_id_with_subordinates('4eae2daf-0004-4000-8000-000000000004',
-                                          '4eae2daf-0002-4000-8000-000000000002');
-select *
-from position
-where company_id = '4eae2daf-8a11-4018-8c8a-5c5d813f596c';
